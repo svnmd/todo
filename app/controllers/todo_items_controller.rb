@@ -1,6 +1,8 @@
 class TodoItemsController < ApplicationController
   before_action :set_todo_list
   before_action :set_todo_item, except: [:create]
+
+
   def create
     @todo_item = @todo_list.todo_items.create(todo_item_params)
     redirect_to @todo_list
@@ -39,7 +41,7 @@ class TodoItemsController < ApplicationController
   end
 
   def sort
-    @todo_item.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    @todo_item = @todo_list.todo_items.order(tag: :asc)
   end
 
 
